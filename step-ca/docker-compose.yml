@@ -1,0 +1,18 @@
+version: "3"
+services:
+  step-ca:
+    container_name: step-ca
+    image: smallstep/step-ca:latest
+    hostname: step.home
+    volumes:
+      - ./data:/home/step:rw
+      - /etc/ssl/certs/:/etc/ssl/certs/:ro
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    environment:
+      - STEPDEBUG=1
+
+networks:
+  default:
+#    enable_ipv6: true
